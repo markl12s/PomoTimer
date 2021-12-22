@@ -1,6 +1,5 @@
 """
 PomoTimer
-Created by Mark
 
 designed as a Pomodoro Timer system for doing schoolwork
 """
