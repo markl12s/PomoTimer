@@ -3,7 +3,7 @@ a Pomodoro timer for the Linux Command line
 
 Functions
 setup
-  downloads the neccisary software to use the default set-up of the timer
+  downloads the necessary software to use the default set-up of the timer
 
 timer
   required parameters
