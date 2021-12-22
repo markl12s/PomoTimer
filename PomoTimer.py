@@ -3,9 +3,8 @@ PomoTimer
 Created by Mark
 
 designed as a Pomodoro Timer system for doing schoolwork
-
-sleep time in seconds
 """
+
 import typer
 import time
 app = typer.Typer()
@@ -24,10 +23,9 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play'
 
     for i in range(iterations):
         print(turn_on)
-        # loading bar
         time.sleep(on_time)
+        
         print(turn_off)
-        # loading bar
         time.sleep(off_time)
 
 @app.command()
