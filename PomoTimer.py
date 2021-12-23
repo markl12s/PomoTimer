@@ -50,7 +50,7 @@ def find_time_tot(time):
     for i in range(iterations): multiply.append(multiplier * 60)
 
     for i in range(iterations):
-        value = -abs(i)
+        value = -abs(i + 1)
         final_value = int(time[value]) * multiply[i]
 
     return final_value
