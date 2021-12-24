@@ -6,6 +6,7 @@ designed as a Pomodoro Timer system for doing schoolwork
 import typer
 import time
 import os
+
 app = typer.Typer()
 
 """
@@ -19,7 +20,6 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play'
     on_time_arr = on_time.split(':')
     off_time_arr = off_time.split(':')
 
-    iterations = int(iterations)
     iterations = int(iterations)
 
     on_time_tot = find_time_tot(on_time_arr)
