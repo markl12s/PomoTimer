@@ -16,7 +16,7 @@ terminal commands
 """
 
 @app.command()
-def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play', turn_off='playerctl pause'):
+def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play', turn_off='playerctl pause', end_timer='nothing'):
     on_time_arr = on_time.split(':')
     off_time_arr = off_time.split(':')
 
@@ -25,12 +25,18 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play'
     on_time_tot = find_time_tot(on_time_arr)
     off_time_tot = find_time_tot(off_time_arr)
 
-    for i in range(iterations):
+    for i in range(iterations - 1):
         os.system(turn_on)
         time.sleep(on_time_tot)
 
         os.system(turn_off)
         time.sleep(off_time_tot)
+
+    os.system(turn_on)
+    time.sleep(on_time_tot)
+
+    if end_timer != 'nothing':
+        os.system(end_timer)
 
 @app.command()
 def setup():
