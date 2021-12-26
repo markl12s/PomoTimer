@@ -16,7 +16,7 @@ terminal commands
 """
 
 @app.command()
-def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play', turn_off='playerctl pause', end_timer='nothing', timer_off_graphic='cmatrix'):
+def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play', turn_off='playerctl pause', end_timer='nothing', turn_off_graphic='cmatrix'):
     on_time_arr = on_time.split(':')
     off_time_arr = off_time.split(':')
 
@@ -65,9 +65,9 @@ def turn_on_action(turn_on, on_time_tot):
     os.system(turn_on)
     time.sleep(on_time_tot)
 
-def turn_off_action(turn_off, timer_off_graphic, off_time_tot):
+def turn_off_action(turn_off, turn_off_graphic, off_time_tot):
     os.system(turn_off)
-    os.system(timer_off_graphic)
+    os.system(turn_off_graphic)
     time.sleep(off_time_tot)
 
 
