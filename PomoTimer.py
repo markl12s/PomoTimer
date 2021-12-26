@@ -15,8 +15,9 @@ terminal commands
 ---------------------------------------------------------------------------------------------------------
 """
 
+#figure out how to kill cmatrix
 @app.command()
-def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play', turn_off='playerctl pause', end_timer='nothing', turn_off_graphic='cmatrix'):
+def timer(on_time: str, off_time: str, iterations: str, turn_on_actions=['kill cmatrix', 'playerctl play'], turn_off_actions=['playerctl pause', 'cmatrix'], end_timer='nothing'):
     on_time_arr = on_time.split(':')
     off_time_arr = off_time.split(':')
 
@@ -26,16 +27,16 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play'
     off_time_tot = find_time_tot(off_time_arr)
 
     for i in range(iterations - 1):
-        turn_on_action(turn_on, on_time_tot)
+        turn_on(turn_on_actions, on_time_tot)
 
-        turn_off_action(turn_off, turn_off_graphic, off_time_tot)
+        turn_off(turn_off_actions, off_time_tot)
 
     os.system(turn_on)
     time.sleep(on_time_tot)
 
     if end_timer != 'nothing':
         if end_timer == 'repeat':
-            turn_off_action(turn_off, turn_off_graphic, off_time_tot)
+            turn_off_action(turn_off_actions, off_time_tot)
 
 @app.command()
 def setup():
@@ -61,13 +62,16 @@ def find_time_tot(time):
 
     return final_value
 
-def turn_on_action(turn_on, on_time_tot):
-    os.system(turn_on)
+def turn_on(turn_on_action, on_time_tot):
+    for i in range(len(turn_on_action)):
+        os.system(turn_on_action[i])
+
     time.sleep(on_time_tot)
 
-def turn_off_action(turn_off, turn_off_graphic, off_time_tot):
-    os.system(turn_off)
-    os.system(turn_off_graphic)
+def turn_off(turn_off_action, off_time_tot):
+    for i in range(len(turn_off_action)):
+        os.system(turn_off_action[i])
+
     time.sleep(off_time_tot)
 
 
