@@ -16,7 +16,7 @@ terminal commands
 """
 
 @app.command()
-def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play', turn_off='playerctl pause', end_timer='nothing'):
+def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play', turn_off='playerctl pause', end_timer='nothing', timer_off_graphic='cmatrix'):
     on_time_arr = on_time.split(':')
     off_time_arr = off_time.split(':')
 
@@ -30,17 +30,21 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play'
         time.sleep(on_time_tot)
 
         os.system(turn_off)
+        os.system(timer_off_graphic)
         time.sleep(off_time_tot)
 
     os.system(turn_on)
     time.sleep(on_time_tot)
 
     if end_timer != 'nothing':
-        os.system(end_timer)
+        if end_timer == 'repeat':
+            os.system(turn_off)
+            os.system(timer_off_graphic)
 
 @app.command()
 def setup():
     os.system('sudo apt install playerctl')
+    os.system('sudo apt install cmatrix')
 
 """
 ---------------------------------------------------------------------------------------------------------
