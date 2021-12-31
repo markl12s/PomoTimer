@@ -16,7 +16,8 @@ terminal commands
 
 @app.command()
 def timer(on_time: str, off_time: str, iterations: str, turn_on=['cmatrix', 'playerctl play'], turn_off=['playerctl pause'], end_timer='nothing'):
-    """use as
+    """
+    use as
     PomoTimer timer hh:mm:ss iterations
     you don't have to do hours, will split up any amount of types of time
     """
