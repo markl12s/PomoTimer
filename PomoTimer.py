@@ -1,6 +1,10 @@
 """
 PomoTimer
 designed as a Pomodoro Timer system for doing schoolwork
+
+current tasks: make the turn on/off work with an array  of actions
+
+other future tasks: make alias for terminal call
 """
 import typer
 import time
@@ -15,7 +19,7 @@ terminal commands
 """
 
 @app.command()
-def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play', turn_off='playerctl pause', end_timer='nothing'):
+def timer(on_time: str, off_time: str, iterations: str, turn_on=['cmatrix', 'playerctl play'], turn_off=['playerctl pause'], end_timer='nothing'):
     on_time_arr = on_time.split(':')
     off_time_arr = off_time.split(':')
 
@@ -25,15 +29,11 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play'
     off_time_tot = find_time_tot(off_time_arr)
 
     for i in range(iterations - 1):
-        os.system(turn_on)
-        time.sleep(on_time_tot)
+        turn_on_actions(turn_on, on_time_tot)
 
-        os.system(turn_off)
-        time.sleep(off_time_tot)
-        os.system('cmatrix')
+        turn_off_actions(turn_off, off_time_tot)
 
-    os.system(turn_on)
-    time.sleep(on_time_tot)
+    turn_on_actions(turn_on, on_time_tot)
 
     if end_timer != 'nothing':
         os.system(end_timer)
@@ -61,6 +61,16 @@ def find_time_tot(time):
         final_value = int(time[value]) * multiply[i]
 
     return final_value
+
+def turn_on_actions(turn_on, on_time_tot):
+    for i in range(len(turn_on)): os.system(turn_on[i])
+
+    time.sleep(on_time_tot)
+
+def turn_off_actions(turn_off, off_time_tot):
+    for i in range(len(turn_off)): os.system(turn_off[i])
+
+    time.sleep(off_time_tot)
 
 """
 ---------------------------------------------------------------------------------------------------------
