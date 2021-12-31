@@ -16,6 +16,10 @@ terminal commands
 
 @app.command()
 def timer(on_time: str, off_time: str, iterations: str, turn_on=['cmatrix', 'playerctl play'], turn_off=['playerctl pause'], end_timer='nothing'):
+    """use as
+    PomoTimer timer hh:mm:ss iterations
+    """
+
     # total amount of time in the on/off sessions
     on_time_tot, off_time_tot = find_time_tot(on_time), find_time_tot(off_time)
 
@@ -43,6 +47,7 @@ functions
 """
 
 def find_time_tot(time_arr):
+    # split up time
     time = time_arr.split(':')
 
     iterations = len(time)
