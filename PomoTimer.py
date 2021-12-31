@@ -30,6 +30,7 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play'
 
         os.system(turn_off)
         time.sleep(off_time_tot)
+        os.system('cmatrix')
 
     os.system(turn_on)
     time.sleep(on_time_tot)
@@ -40,6 +41,7 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on='playerctl play'
 @app.command()
 def setup():
     os.system('sudo apt install playerctl')
+    os.system('sudo apt install cmatrix')
 
 """
 ---------------------------------------------------------------------------------------------------------
