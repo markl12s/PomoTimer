@@ -1,10 +1,6 @@
 """
 PomoTimer
 designed as a Pomodoro Timer system for doing schoolwork
-
-current tasks: make the turn on/off work with an array  of actions
-
-other future tasks: make alias for terminal call
 """
 import typer
 import time
