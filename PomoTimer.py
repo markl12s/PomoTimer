@@ -16,17 +16,12 @@ terminal commands
 
 @app.command()
 def timer(on_time: str, off_time: str, iterations: str, turn_on=['cmatrix', 'playerctl play'], turn_off=['playerctl pause'], end_timer='nothing'):
-    on_time_arr = on_time.split(':')
-    off_time_arr = off_time.split(':')
+    on_time_tot, off_time_tot = find_time_tot(on_time), find_time_tot(off_time)
 
     iterations = int(iterations)
 
-    on_time_tot = find_time_tot(on_time_arr)
-    off_time_tot = find_time_tot(off_time_arr)
-
     for i in range(iterations - 1):
         turn_on_actions(turn_on, on_time_tot)
-
         turn_off_actions(turn_off, off_time_tot)
 
     turn_on_actions(turn_on, on_time_tot)
@@ -45,7 +40,9 @@ functions
 ---------------------------------------------------------------------------------------------------------
 """
 
-def find_time_tot(time):
+def find_time_tot(time_arr):
+    time = time_arr.split(':')
+
     iterations = len(time)
     multiplier = 1
     multiply = [1]
