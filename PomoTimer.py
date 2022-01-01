@@ -35,14 +35,10 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on=['cmatrix', 'pla
     # exit case
     turn_on_actions(turn_on, on_time_tot)
     if end_timer != 'nothing':
-        os.system(end_timer)
-    elif end_timer == 'turn off':
-        turn_off_actions(turn_off, off_time_tot)
-
-@app.command()
-def setup():
-    os.system('sudo apt install playerctl')
-    os.system('sudo apt install cmatrix')
+        if end_timer == 'turn off':
+            turn_off_actions(turn_off, off_time_tot)
+        else:
+            os.system(end_timer)
 
 """
 ---------------------------------------------------------------------------------------------------------
