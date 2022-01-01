@@ -15,7 +15,7 @@ terminal commands
 """
 
 @app.command()
-def timer(on_time: str, off_time: str, iterations: str, turn_on=['cmatrix', 'playerctl play'], turn_off=['playerctl pause'], end_timer='nothing'):
+def timer(on_time: str, off_time: str, iterations: str, turn_on=['cmatrix', 'playerctl play'], turn_off=['playerctl pause'], end_timer='turn off'):
     """
     use as
     PomoTimer timer hh:mm:ss iterations
@@ -36,6 +36,8 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on=['cmatrix', 'pla
     turn_on_actions(turn_on, on_time_tot)
     if end_timer != 'nothing':
         os.system(end_timer)
+    elif end_timer == 'turn off':
+        turn_off_actions(turn_off, off_time_tot)
 
 @app.command()
 def setup():
