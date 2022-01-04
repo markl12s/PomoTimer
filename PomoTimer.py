@@ -23,22 +23,17 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on=['cmatrix', 'pla
     """
 
     # total amount of time in the on/off sessions
-    on_time_tot, off_time_tot = find_time_tot(on_time), find_time_tot(off_time)
+    on_time_tot, off_time_tot = findTimeTot(on_time), findTimeTot(off_time)
 
     iterations = int(iterations)
 
     # loop through actions, up until exit case
     for i in range(iterations - 1):
-        turn_on_actions(turn_on, on_time_tot)
-        turn_off_actions(turn_off, off_time_tot)
+        turnOnActions(turn_on, on_time_tot)
+        turnOffActions(turn_off, off_time_tot)
 
-    # exit case
-    turn_on_actions(turn_on, on_time_tot)
-    if end_timer != 'nothing':
-        if end_timer == 'turn off':
-            turn_off_actions(turn_off, off_time_tot)
-        else:
-            os.system(end_timer)
+    exitCase(turn_on, on_time_tot, turn_off, off_time_tot)
+
 
 """
 ---------------------------------------------------------------------------------------------------------
@@ -46,7 +41,7 @@ functions
 ---------------------------------------------------------------------------------------------------------
 """
 
-def find_time_tot(time_arr):
+def findTimeTot(time_arr):
     # split up time
     time = time_arr.split(':')
 
@@ -64,17 +59,25 @@ def find_time_tot(time_arr):
 
     return final_value
 
-def turn_on_actions(turn_on, on_time_tot):
+def turnOnActions(turn_on, on_time_tot):
     # iterate through actions
     for i in range(len(turn_on)): os.system(turn_on[i])
 
     time.sleep(on_time_tot)
 
-def turn_off_actions(turn_off, off_time_tot):
+def turnOffActions(turn_off, off_time_tot):
     # iterate through actions
     for i in range(len(turn_off)): os.system(turn_off[i])
 
     time.sleep(off_time_tot)
+
+def exitCase(turn_on, on_time_tot, turn_off, off_time_tot):
+    turnOnActions(turn_on, on_time_tot)
+    if end_timer != 'nothing':
+        if end_timer == 'turn off':
+            turnOffActions(turn_off, off_time_tot)
+        else:
+            os.system(end_timer)
 
 """
 ---------------------------------------------------------------------------------------------------------
