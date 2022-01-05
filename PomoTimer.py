@@ -32,7 +32,7 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on=['cmatrix', 'pla
         turnOnActions(turn_on, on_time_tot)
         turnOffActions(turn_off, off_time_tot)
 
-    exitCase(turn_on, on_time_tot, turn_off, off_time_tot)
+    exitCase(turn_on, on_time_tot, turn_off, off_time_tot, end_timer)
 
 
 """
@@ -71,7 +71,7 @@ def turnOffActions(turn_off, off_time_tot):
 
     time.sleep(off_time_tot)
 
-def exitCase(turn_on, on_time_tot, turn_off, off_time_tot):
+def exitCase(turn_on, on_time_tot, turn_off, off_time_tot, end_timer):
     turnOnActions(turn_on, on_time_tot)
     if end_timer != 'nothing':
         if end_timer == 'turn off':
