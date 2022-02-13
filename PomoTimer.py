@@ -1,3 +1,5 @@
+#! /usr/bin/python3
+
 """
 PomoTimer
 designed as a Pomodoro Timer system for doing schoolwork
@@ -19,7 +21,7 @@ def timer(on_time: str, off_time: str, iterations: str, turn_on=['cmatrix', 'pla
     """
     use as
     PomoTimer timer hh:mm:ss iterations
-    you don't have to do hours, will split up any amount of types of time
+    you dont have to do hours, will split up any amount of types of time
     """
 
     # total amount of time in the on/off sessions
@@ -71,6 +73,7 @@ def turnOffActions(turn_off, off_time_tot):
 
     time.sleep(off_time_tot)
 
+# final loop of code, used to end the program smoothly
 def exitCase(turn_on, on_time_tot, turn_off, off_time_tot, end_timer):
     turnOnActions(turn_on, on_time_tot)
     if end_timer != 'nothing':
@@ -78,6 +81,7 @@ def exitCase(turn_on, on_time_tot, turn_off, off_time_tot, end_timer):
             turnOffActions(turn_off, off_time_tot)
         else:
             os.system(end_timer)
+
 
 """
 ---------------------------------------------------------------------------------------------------------
