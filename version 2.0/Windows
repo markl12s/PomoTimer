@@ -1,5 +1,41 @@
 import time
+import spotipy
 
+"""
+--------------------------------------------------------------------------------------------------------------------
+architecture
+--------------------------------------------------------------------------------------------------------------------
+"""
+
+def userInput():
+    user_inputs = waitInput()
+    on_time, off_time, iterations = timeSplits(user_inputs)
+
+    return on_time, off_time, iterations
+
+def pomoCount(on_time, off_time, iterations):
+    for i in range(iterations):
+        countdown(on_time)
+        countdown(off_time)
+
+"""
+--------------------------------------------------------------------------------------------------------------------
+input
+--------------------------------------------------------------------------------------------------------------------
+"""
+
+def waitInput():
+    user_inputs = input('>> ')
+    user_inputs = user_inputs.split(' ')
+
+    return user_inputs
+
+def timeSplits(user_inputs):
+    on_time = user_inputs[0]
+    off_time = user_inputs[1]
+    iterations = user_inputs[2]
+
+    return int(on_time), int(off_time), int(iterations)
 
 """
 --------------------------------------------------------------------------------------------------------------------
@@ -17,6 +53,8 @@ def countdown(total_time):
 
 def findTimeTot(total_time):
     # split up time
+    total_time = str(total_time)
+
     time = total_time.split(':')
 
     iterations = len(time)
@@ -39,18 +77,18 @@ def displayTime(total_time):
     timePrint = str(h).zfill(2) + ":" + str(m).zfill(2) + ":" + str(s).zfill(2)
     print('\r', timePrint, end="")
 
-def waitInput():
-    total_time = input('>> ')
-
-    countdown(total_time)
-
 
 """
 --------------------------------------------------------------------------------------------------------------------
-spotify
+spotify CURRENTLY WORKING ON WINDOWS 
 --------------------------------------------------------------------------------------------------------------------
 """
 
+def playMusic():
+    start_playback()
+
+def pauseMusic():
+    stop_playback()
 
 
 """
@@ -59,5 +97,16 @@ execution
 --------------------------------------------------------------------------------------------------------------------
 """
 
-while True:
-    waitInput()
+# while True:
+    # on_time, off_time, iterations = userInput()
+    # pomoCount(on_time, off_time, iterations)
+
+
+"""
+--------------------------------------------------------------------------------------------------------------------
+execution
+--------------------------------------------------------------------------------------------------------------------
+"""
+
+playMusic()
+pauseMusic()
